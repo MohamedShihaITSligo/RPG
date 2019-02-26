@@ -8,6 +8,8 @@ TagManager:
   - Human
   - Gas
   - Coin
+  - Zombi
+  - Barrier
   layers:
   - Default
   - TransparentFX
