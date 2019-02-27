@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - Zombi
   - Barrier
+  - GasStation
   layers:
   - Default
   - TransparentFX

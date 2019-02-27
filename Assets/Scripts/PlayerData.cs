@@ -12,7 +12,7 @@ public class PlayerData : MonoBehaviour {
         XP,
         Badpoints,
         GoodPoint,
-        xpUntilNextLevel = 8,
+        xpUntilNextLevel = 10,
         Level;
     GameManager manager;
     private void Start()
@@ -30,32 +30,42 @@ public class PlayerData : MonoBehaviour {
     {
         if(XP >= (xpUntilNextLevel * Level))
         {
+            XP -= xpUntilNextLevel * Level;
             Level++;
             Speed++;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void AddXP(int amount)
     {
-        string tag = collision.tag;
+        XP += amount;
+    }
+
+    void HandelCollision(GameObject hitObject)
+    {
+        string tag = hitObject.tag;
         if (tag.Equals("Gas"))
         {
-            XP += 10;
-            Fule += 10;
-            Destroy(collision.gameObject);
+            AddXP(10);
+            //Fule += 10;
+            Destroy(hitObject.gameObject);
         }
         else if (tag.Equals("Human"))
         {
             Badpoints++;
-            manager.SpawnBlood(collision.transform.position);
-            Destroy(collision.gameObject);
+            manager.SpawnBlood(hitObject.transform.position);
+            Destroy(hitObject.gameObject);
         }
-        else if (tag.Equals("Zombi"))
+        else if (tag.Equals("Alien"))
         {
             GoodPoint++;
-            XP++;
-            manager.SpawnBlood(collision.transform.position);
-            Destroy(collision.gameObject);
+            AddXP(20);
+            manager.SpawnExplosion(hitObject.transform.position);
+            Destroy(hitObject.gameObject);
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        HandelCollision(collision.gameObject);
     }
 }
