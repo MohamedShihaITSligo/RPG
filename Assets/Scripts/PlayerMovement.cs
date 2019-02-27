@@ -65,3 +65,4 @@ public class PlayerMovement : MonoBehaviour {
         transform.position = gasStations[shortestIndex].transform.position;
     }
 }
+

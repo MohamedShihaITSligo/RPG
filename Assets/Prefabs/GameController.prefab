@@ -52,3 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 1519803263209800, guid: 7edd768f6a8460640922081ce7ce631d, type: 2}
+  explosion: {fileID: 1342056064476980, guid: cc0ecba751851d94493f21d153ab7e07, type: 2}
