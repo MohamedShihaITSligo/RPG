@@ -41,9 +41,8 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if(data.Fule<=0)
         {
-            body.velocity = Vector2.zero;
             TeleportToNearestGasStation();
-        }
+        }else body.velocity = Vector2.zero;
 
         body.angularVelocity = 0;
     }

@@ -20,8 +20,10 @@ public class FollowPath : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
         if (PickRandomStartNode)
         {
-
+            currentNodeIndex = Random.Range(0, path.NodeCount - 1);
         }
+        GetNextNodePosition();
+        TeleportToNode();
     }
 
     private void Update()
@@ -30,8 +32,7 @@ public class FollowPath : MonoBehaviour {
         {
             GetNextNodePosition();
         }
-        GetNextNodePosition();
-        TeleportToNode();
+        
     }
 
     private void FixedUpdate()
