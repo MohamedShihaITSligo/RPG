@@ -4,25 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    
-    
     float horizontal, vertical;
     Rigidbody2D body;
     PlayerData data;
-    
 
     void Start () {
         body = GetComponent<Rigidbody2D>();
         data = GetComponent<PlayerData>();
-
     }
 	
 	
 	void Update () {
         vertical = Input.GetAxis("Vertical");
         horizontal = Input.GetAxis("Horizontal");
-    
-        
     }
 
     private void FixedUpdate()
@@ -37,7 +31,6 @@ public class PlayerMovement : MonoBehaviour {
             // transform.up is a vector3
             body.velocity = transform.up * vertical * data.Speed;
             data.Fule -= Mathf.Abs(vertical * 0.01f);
-
         }
         else if(data.Fule<=0)
         {
@@ -49,6 +42,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void TeleportToNearestGasStation()
     {
+        float oldZPosition = transform.position.z;
         GameObject[] gasStations = GameObject.FindGameObjectsWithTag("GasStation");
         int shortestIndex = -1;
         float shortestDistance = float.MaxValue;
@@ -61,7 +55,12 @@ public class PlayerMovement : MonoBehaviour {
                 shortestIndex = i;
             }
         }
-        transform.position = gasStations[shortestIndex].transform.position;
+        //transform.position = gasStations[shortestIndex].transform.position;
+        //teleport the player to the x and y gasStation and keep the z
+        transform.position = new Vector3(
+            gasStations[shortestIndex].transform.position.x, 
+            gasStations[shortestIndex].transform.position.y,
+            oldZPosition);
     }
 }
 
