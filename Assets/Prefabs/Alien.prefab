@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4515842488449610}
   - component: {fileID: 212786884216495774}
-  - component: {fileID: 61210887809315890}
   - component: {fileID: 114910485624728026}
+  - component: {fileID: 60542236997529810}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Alien
@@ -36,14 +36,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1108161342475072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5116665, y: -10.764988, z: 0}
+  m_LocalPosition: {x: 9.052955, y: 5.375045, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61210887809315890
-BoxCollider2D:
+--- !u!60 &60542236997529810
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -64,9 +64,27 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.62, y: 0.54}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.09317684, y: 0.26999998}
+      - {x: -0.09111786, y: 0.27420568}
+      - {x: -0.17952919, y: 0.16682339}
+      - {x: -0.17204952, y: 0.019326687}
+      - {x: -0.31, y: 0}
+      - {x: -0.31, y: -0.17999999}
+      - {x: -0.26228046, y: -0.19900799}
+      - {x: -0.25, y: -0.26999998}
+      - {x: -0.08869839, y: -0.2761345}
+      - {x: -0.042800903, y: -0.2111187}
+      - {x: 0.039964676, y: -0.20566893}
+      - {x: 0.07795715, y: -0.27852583}
+      - {x: 0.23214626, y: -0.2615881}
+      - {x: 0.27214813, y: -0.17897081}
+      - {x: 0.33546638, y: -0.16682434}
+      - {x: 0.30579376, y: 0.0021476746}
+      - {x: 0.23122692, y: 0.0014438629}
+      - {x: 0.17548943, y: 0.025853157}
+      - {x: 0.16055775, y: 0.19373512}
 --- !u!114 &114910485624728026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf72e4ee2ac14341a03a07173fc0735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RevealDistance: 5
 --- !u!212 &212786884216495774
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -12,6 +12,8 @@ public class PlayerData : MonoBehaviour {
         XP,
         Badpoints,
         GoodPoint,
+        aliensKilled,
+        GasCansCollected,
         xpUntilNextLevel = 10,
         Level;
     GameManager manager;
@@ -46,6 +48,7 @@ public class PlayerData : MonoBehaviour {
         string tag = hitObject.tag;
         if (tag.Equals("Gas"))
         {
+            GasCansCollected++;
             AddXP(10);
             //Fule += 10;
             Destroy(hitObject.gameObject);
@@ -59,10 +62,15 @@ public class PlayerData : MonoBehaviour {
         else if (tag.Equals("Alien"))
         {
             GoodPoint++;
+            aliensKilled++;
             AddXP(20);
             manager.SpawnExplosion(hitObject.transform.position);
             Destroy(hitObject.gameObject);
         }
+        Debug.Log("Fule: " + Fule +
+            "| Aliens Count: " + 13 + "/Killd: " + aliensKilled + 
+            "| Gas Cans: "+4+ "/collected: "+ GasCansCollected
+            );
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

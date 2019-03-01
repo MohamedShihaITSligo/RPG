@@ -9,6 +9,7 @@ public class FollowPath : MonoBehaviour {
     public bool canMove = true;
     public float moveSpeed = 2f;
     public float distanceToNodeTolerance = 0.2f;
+    public float stopDistance;
 
     Vector2 currentTarget;
     Rigidbody2D body;
@@ -20,7 +21,7 @@ public class FollowPath : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
         if (PickRandomStartNode)
         {
-            currentNodeIndex = Random.Range(0, path.NodeCount - 1);
+            currentNodeIndex = Random.Range(1, path.NodeCount - 1);
         }
         GetNextNodePosition();
         TeleportToNode();
@@ -32,7 +33,8 @@ public class FollowPath : MonoBehaviour {
         {
             GetNextNodePosition();
         }
-        
+        if (TraficLightGreen()) canMove = true;
+        else canMove = false;
     }
 
     private void FixedUpdate()
@@ -57,5 +59,23 @@ public class FollowPath : MonoBehaviour {
         currentNodeIndex++;
     }
 
-
+    bool TraficLightGreen()
+    {
+        GameObject[] TraficLights = GameObject.FindGameObjectsWithTag("TrafficLight");
+        int shortestIndex = -1;
+        float shortestDistance = float.MaxValue;
+        for (int i = 0; i < TraficLights.Length; i++)
+        {
+            float trafficLightDistance = Vector2.Distance(transform.position, TraficLights[i].transform.position);
+            if (trafficLightDistance < shortestDistance)
+            {
+                shortestDistance = trafficLightDistance;
+                shortestIndex = i;
+            }
+        }
+        Color TraficLightColor = TraficLights[shortestIndex].GetComponent<TrafficLightController>().GetTrafgicLightState();
+        float distance = Vector2.Distance(transform.position, TraficLights[shortestIndex].transform.position);
+        if (distance < stopDistance && TraficLightColor.Equals(Color.red)) return false;
+        else return true;
+    }
 }

@@ -36,4 +36,9 @@ public class TrafficLightController : MonoBehaviour
         LightConeSprite.color = Color.green;
         else LightConeSprite.color = Color.red;
     }
+    public Color GetTrafgicLightState()
+    {
+        if (LightConeSprite.color == Color.red) return Color.red;
+        else return Color.green;
+    }
 }
