@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        data.UpdateText();
         // if the player fule is more then 0 and accelerating move the car
         if (vertical!=0 && data.Fule > 0)
         {

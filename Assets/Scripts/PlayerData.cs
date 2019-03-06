@@ -17,9 +17,12 @@ public class PlayerData : MonoBehaviour {
         xpUntilNextLevel = 10,
         Level;
     GameManager manager;
+    TextController text;
     private void Start()
     {
         manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        text = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<TextController>();
+        UpdateText();
     }
 
     private void Update()
@@ -67,13 +70,19 @@ public class PlayerData : MonoBehaviour {
             manager.SpawnExplosion(hitObject.transform.position);
             Destroy(hitObject.gameObject);
         }
-        Debug.Log("Fule: " + Fule +
-            "| Aliens Count: " + 13 + "/Killd: " + aliensKilled + 
-            "| Gas Cans: "+4+ "/collected: "+ GasCansCollected
-            );
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         HandelCollision(collision.gameObject);
+    }
+
+    public void UpdateText()
+    {
+        text.Level("Level: " + Level);
+        text.Health ("Health: " + Health );
+        text.Killed ("Killed: " + aliensKilled);
+        text.Fule  ("Fule: " + (int)Fule);
+        text.BadPoints (""+Badpoints);
+        text.GoodPoints(""+GoodPoint);
     }
 }

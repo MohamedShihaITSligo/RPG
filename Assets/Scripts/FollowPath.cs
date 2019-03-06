@@ -75,6 +75,7 @@ public class FollowPath : MonoBehaviour {
         }
         Color TraficLightColor = TraficLights[shortestIndex].GetComponent<TrafficLightController>().GetTrafgicLightState();
         float distance = Vector2.Distance(transform.position, TraficLights[shortestIndex].transform.position);
+
         if (distance < stopDistance && TraficLightColor.Equals(Color.red)) return false;
         else return true;
     }
